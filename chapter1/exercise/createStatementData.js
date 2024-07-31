@@ -38,6 +38,14 @@ class PerformanceCalculator {
     }
 }
 
+class TragedyCalculator extends PerformanceCalculator {
+
+}
+
+class ComedyCalculator extends PerformanceCalculator {
+    
+}
+
 function playFor(perf) {
     return plays[perf.playID];
 }
@@ -51,7 +59,12 @@ function totalAmount(data) {
 }
 
 function createPerformanceCalculator(performance, play) {
-    return new PerformanceCalculator(performance, play);
+    switch (play.type) {
+        case "tragedy": return new TragedyCalculator(performance, play);
+        case "comedy": return new ComedyCalculator(performance, play);
+        default:
+            throw new Error(`unknown type: ${play.type}`);
+    }
 }
 
 function enrichPerformance(performance) {
