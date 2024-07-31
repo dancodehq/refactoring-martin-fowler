@@ -53,7 +53,7 @@ function totalAmount(data) {
 function enrichPerformance(performance) {
     const calculator = new PerformanceCalculator(performance, playFor(performance));
     const result = Object.assign({}, performance);
-    result.play = playFor(result);
+    result.play = calculator.play;
     result.amount = amountFor(result);
     result.volumeCredits = volumeCreditsFor(result);
     return result;
