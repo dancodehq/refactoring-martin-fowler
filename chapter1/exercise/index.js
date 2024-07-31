@@ -68,7 +68,7 @@ export function statement(invoice, plays) {
         return statementData;
     }
 
-    function renderPlainText(data, invoice) {
+    function renderPlainText(data) {
         let text = `Statement for ${data.customer}\n`;
     
         for (let perf of data.performances) {
