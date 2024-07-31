@@ -1,6 +1,6 @@
 export function statement(invoice, plays) {
 
-    function amountFor(performance, play) {
+    function amountFor(performance) {
         let amount = 0;
         switch (playFor(performance).type) {
             case "tragedy":
