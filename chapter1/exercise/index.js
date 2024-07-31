@@ -1,11 +1,5 @@
 export function statement(invoice, plays) {
 
-    const statementData = {};
-    statementData.customer = invoice.customer;
-    statementData.performances = invoice.performances.map(enrichPerformance);
-    statementData.totalAmount = totalAmount(statementData);
-    statementData.totalVolumeCredits = totalVolumeCredits(statementData);
-
     function amountFor(performance) {
         let amount = 0;
         switch (performance.play.type) {
@@ -49,12 +43,12 @@ export function statement(invoice, plays) {
             }).format(number / 100);
     }
 
-    function totalVolumeCredits() {
-        return statementData.performances.reduce((total, p) => total + p.volumeCredits, 0);
+    function totalVolumeCredits(data) {
+        return data.performances.reduce((total, p) => total + p.volumeCredits, 0);
     }
 
-    function totalAmount() {
-        return statementData.performances.reduce((total, p) => total + p.amount, 0);
+    function totalAmount(data) {
+        return data.performances.reduce((total, p) => total + p.amount, 0);
     }
 
     function enrichPerformance(performance) {
@@ -63,6 +57,15 @@ export function statement(invoice, plays) {
         result.amount = amountFor(result);
         result.volumeCredits = volumeCreditsFor(result);
         return result;
+    }
+
+    function createStatementData(invoice, plays) {
+        const statementData = {};
+        statementData.customer = invoice.customer;
+        statementData.performances = invoice.performances.map(enrichPerformance);
+        statementData.totalAmount = totalAmount(statementData);
+        statementData.totalVolumeCredits = totalVolumeCredits(statementData);
+        return statementData;
     }
 
     function renderPlainText(data, invoice) {
@@ -78,5 +81,5 @@ export function statement(invoice, plays) {
         return text;
     }
 
-    return renderPlainText(statementData, invoice);
+    return renderPlainText(createStatementData(invoice, plays));
 }
