@@ -1,5 +1,9 @@
 export function statement(invoice, plays) {
 
+    const statementData = {};
+    statementData.customer = invoice.customer;
+    statementData.performances = invoice.performances;
+
     function amountFor(performance) {
         let amount = 0;
         switch (playFor(performance).type) {
@@ -71,10 +75,6 @@ export function statement(invoice, plays) {
         text += `You earned ${totalVolumeCredits()} credits\n`;
         return text;
     }
-
-    const statementData = {};
-    statementData.customer = invoice.customer;
-    statementData.performances = invoice.performances;
 
     return renderPlainText(statementData, invoice);
 }
