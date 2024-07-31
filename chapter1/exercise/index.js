@@ -59,7 +59,7 @@ export function statement(invoice, plays) {
         return result;
     }
 
-    function createStatementData(invoice, plays) {
+    function createStatementData(invoice) {
         const statementData = {};
         statementData.customer = invoice.customer;
         statementData.performances = invoice.performances.map(enrichPerformance);
