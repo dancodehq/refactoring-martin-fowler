@@ -60,7 +60,7 @@ export function statement(invoice, plays) {
     }
 
     function renderPlainText(data, invoice) {
-        let text = `Statement for ${invoice.customer}\n`;
+        let text = `Statement for ${data.customer}\n`;
     
         for (let perf of invoice.performances) {
             // print line for this order
@@ -73,6 +73,7 @@ export function statement(invoice, plays) {
     }
 
     const statementData = {};
+    statementData.customer = invoice.customer;
 
     return renderPlainText(statementData, invoice);
 }
