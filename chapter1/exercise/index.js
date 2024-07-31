@@ -49,7 +49,7 @@ export function statement(invoice, plays) {
 
     function totalVolumeCredits() {
         let volumeCredits = 0;
-        for (let perf of invoice.performances) {
+        for (let perf of statementData.performances) {
             volumeCredits += volumeCreditsFor(perf);
         }
         return volumeCredits;
@@ -57,7 +57,7 @@ export function statement(invoice, plays) {
 
     function totalAmount() {
         let totalAmount = 0;
-        for (let perf of invoice.performances) {
+        for (let perf of statementData.performances) {
             totalAmount += amountFor(perf);
         }
         return totalAmount;
