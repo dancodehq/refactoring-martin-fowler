@@ -58,11 +58,7 @@ export function statement(invoice, plays) {
     }
 
     function totalVolumeCredits() {
-        let volumeCredits = 0;
-        for (let perf of statementData.performances) {
-            volumeCredits += perf.volumeCredits;
-        }
-        return volumeCredits;
+        return statementData.performances.reduce((total, p) => total + p.volumeCredits, 0);
     }
 
     function totalAmount() {
