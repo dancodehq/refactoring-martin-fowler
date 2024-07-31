@@ -60,16 +60,16 @@ export function statement(invoice, plays) {
     }
 
     function renderPlainText(invoice) {
-        let result = `Statement for ${invoice.customer}\n`;
+        let text = `Statement for ${invoice.customer}\n`;
     
         for (let perf of invoice.performances) {
             // print line for this order
-            result += `  ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience} seats)\n`;
+            text += `  ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience} seats)\n`;
         }
     
-        result += `Amount owed is ${usd(totalAmount())}\n`;
-        result += `You earned ${totalVolumeCredits()} credits\n`;
-        return result;
+        text += `Amount owed is ${usd(totalAmount())}\n`;
+        text += `You earned ${totalVolumeCredits()} credits\n`;
+        return text;
     }
 
     return renderPlainText(invoice);
