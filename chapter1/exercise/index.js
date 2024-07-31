@@ -22,6 +22,10 @@ export function statement(invoice, plays) {
         return amount;
     }
 
+    function playFor(perf) {
+        return plays[perf.playID];
+    }
+
     let totalAmount = 0;
     let volumeCredits = 0;
     let result = `Statement for ${invoice.customer}\n`;
