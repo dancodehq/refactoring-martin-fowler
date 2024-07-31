@@ -1,5 +1,11 @@
 import plays from './plays.json' with { type: 'json' }
 
+class PerformanceCalculator {
+    constructor(performance) {
+        this.performance = performance;
+    }
+}
+
 function amountFor(performance) {
     let amount = 0;
     switch (performance.play.type) {
@@ -44,6 +50,7 @@ function totalAmount(data) {
 }
 
 function enrichPerformance(performance) {
+    const calculator = new PerformanceCalculator(performance);
     const result = Object.assign({}, performance);
     result.play = playFor(result);
     result.amount = amountFor(result);
