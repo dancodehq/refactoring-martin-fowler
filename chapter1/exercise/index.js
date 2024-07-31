@@ -25,3 +25,22 @@ export function statement(invoice, plays) {
 
     return renderPlainText(createStatementData(invoice, plays));
 }
+
+export function htmlStatement(invoice, plays) {
+
+    function renderHtml(data) {
+        let html = `<h1>Statement for ${data.customer}</h1>\n`;
+        html += "<table>\n";
+        html += "<tr><th>play</th><th>seats</th><th>cost</th></tr>";
+        for (let perf of data.performances) {
+            html += `  <tr><td>${perf.play.name}</td><td>${perf.audience}</td>`;
+            html += `<td>${usd(perf.amount)}</td></tr>\n`;
+        }
+        html += "</table>\n";
+        html += `<p>Amount owed is <em>${usd(data.totalAmount)}</em></p>\n`;
+        html += `<p>You earned <em>${data.totalVolumeCredits}</em> credits</p>\n`;
+        return html;
+    }
+
+    return renderHtml(createStatementData(invoice, plays));
+}
