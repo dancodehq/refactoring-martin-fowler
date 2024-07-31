@@ -4,6 +4,7 @@ export function statement(invoice, plays) {
         const result = Object.assign({}, performance);
         result.play = playFor(result);
         result.amount = amountFor(result);
+        result.volumeCredits = volumeCreditsFor(result);
         return result;
     }
 
