@@ -8,7 +8,7 @@ function usd(number) {
         }).format(number / 100);
 }
 
-export function statement(invoice, plays) {
+export function plainTextStatement(invoice, plays) {
 
     function renderPlainText(data) {
         let text = `Statement for ${data.customer}\n`;

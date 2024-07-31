@@ -1,11 +1,11 @@
 import assert from 'assert';
-import { htmlStatement, statement } from "./index.js";
+import { htmlStatement, plainTextStatement } from "./index.js";
 import plays from './plays.json' with { type: 'json' }
 import invoices from './invoices.json' with { type: 'json' }
 
 describe('statement', () => {
     it('should render statement text', () => {
-        const text = statement(invoices[0], plays);
+        const text = plainTextStatement(invoices[0], plays);
         
         assert.equal(text, `Statement for BigCo
   Hamlet: $650.00 (55 seats)
