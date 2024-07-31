@@ -1,8 +1,12 @@
 export function statement(invoice, plays) {
 
+    function enrichPerformance(performance) {
+        return Object.assign({}, performance);
+    }
+
     const statementData = {};
     statementData.customer = invoice.customer;
-    statementData.performances = invoice.performances;
+    statementData.performances = invoice.performances.map(enrichPerformance);
 
     function amountFor(performance) {
         let amount = 0;
