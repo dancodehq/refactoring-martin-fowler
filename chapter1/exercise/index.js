@@ -59,7 +59,7 @@ export function statement(invoice, plays) {
         return totalAmount;
     }
 
-    function renderPlainText(invoice) {
+    function renderPlainText(data, invoice) {
         let text = `Statement for ${invoice.customer}\n`;
     
         for (let perf of invoice.performances) {
@@ -72,5 +72,7 @@ export function statement(invoice, plays) {
         return text;
     }
 
-    return renderPlainText(invoice);
+    const statementData = {};
+
+    return renderPlainText(statementData, invoice);
 }
