@@ -12,7 +12,7 @@ export function statement(invoice, plays) {
 
     function amountFor(performance) {
         let amount = 0;
-        switch (playFor(performance).type) {
+        switch (performance.play.type) {
             case "tragedy":
                 amount = 40000;
                 if (performance.audience > 30) {
@@ -27,7 +27,7 @@ export function statement(invoice, plays) {
                 amount += 300 * performance.audience;
                 break;
             default:
-                throw new Error(`unknown type: ${playFor(performance).type}`);
+                throw new Error(`unknown type: ${performance.play.type}`);
         }
         return amount;
     }
@@ -39,7 +39,7 @@ export function statement(invoice, plays) {
     function volumeCreditsFor(performance) {
         let volumeCredits = 0;
         volumeCredits += Math.max(performance.audience - 30, 0);
-        if ("comedy" === playFor(performance).type) {
+        if ("comedy" === performance.play.type) {
             volumeCredits += Math.floor(performance.audience / 5);
         }
         return volumeCredits;
@@ -74,7 +74,7 @@ export function statement(invoice, plays) {
     
         for (let perf of data.performances) {
             // print line for this order
-            text += `  ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience} seats)\n`;
+            text += `  ${perf.play.name}: ${usd(amountFor(perf))} (${perf.audience} seats)\n`;
         }
     
         text += `Amount owed is ${usd(totalAmount())}\n`;
