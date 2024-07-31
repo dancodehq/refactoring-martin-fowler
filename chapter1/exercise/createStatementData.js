@@ -50,8 +50,12 @@ function totalAmount(data) {
     return data.performances.reduce((total, p) => total + p.amount, 0);
 }
 
+function createPerformanceCalculator(performance, play) {
+    return new PerformanceCalculator(performance, play);
+}
+
 function enrichPerformance(performance) {
-    const calculator = new PerformanceCalculator(performance, playFor(performance));
+    const calculator = createPerformanceCalculator(performance, playFor(performance));
     const result = Object.assign({}, performance);
     result.play = calculator.play;
     result.amount = calculator.amount;
