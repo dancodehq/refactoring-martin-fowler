@@ -66,11 +66,7 @@ export function statement(invoice, plays) {
     }
 
     function totalAmount() {
-        let totalAmount = 0;
-        for (let perf of statementData.performances) {
-            totalAmount += perf.amount;
-        }
-        return totalAmount;
+        return statementData.performances.reduce((total, p) => total + p.amount, 0);
     }
 
     function renderPlainText(data, invoice) {
