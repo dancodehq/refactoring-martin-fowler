@@ -29,10 +29,6 @@ class PerformanceCalculator {
     }
 }
 
-function amountFor(performance) {
-    return new PerformanceCalculator(performance, playFor(performance)).amount;
-}
-
 function playFor(perf) {
     return plays[perf.playID];
 }
@@ -58,7 +54,7 @@ function enrichPerformance(performance) {
     const calculator = new PerformanceCalculator(performance, playFor(performance));
     const result = Object.assign({}, performance);
     result.play = calculator.play;
-    result.amount = amountFor(result);
+    result.amount = calculator.amount;
     result.volumeCredits = volumeCreditsFor(result);
     return result;
 }
