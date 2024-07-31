@@ -65,7 +65,7 @@ export function statement(invoice, plays) {
     function totalAmount() {
         let totalAmount = 0;
         for (let perf of statementData.performances) {
-            totalAmount += amountFor(perf);
+            totalAmount += perf.amount;
         }
         return totalAmount;
     }
@@ -75,7 +75,7 @@ export function statement(invoice, plays) {
     
         for (let perf of data.performances) {
             // print line for this order
-            text += `  ${perf.play.name}: ${usd(amountFor(perf))} (${perf.audience} seats)\n`;
+            text += `  ${perf.play.name}: ${usd(perf.amount)} (${perf.audience} seats)\n`;
         }
     
         text += `Amount owed is ${usd(totalAmount())}\n`;
