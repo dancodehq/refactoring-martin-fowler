@@ -42,10 +42,6 @@ function playFor(perf) {
     return plays[perf.playID];
 }
 
-function volumeCreditsFor(performance) {
-    return new PerformanceCalculator(performance, playFor(performance)).volumeCredits;
-}
-
 function totalVolumeCredits(data) {
     return data.performances.reduce((total, p) => total + p.volumeCredits, 0);
 }
@@ -59,7 +55,7 @@ function enrichPerformance(performance) {
     const result = Object.assign({}, performance);
     result.play = calculator.play;
     result.amount = calculator.amount;
-    result.volumeCredits = volumeCreditsFor(result);
+    result.volumeCredits = calculator.volumeCredits;
     return result;
 }
 
