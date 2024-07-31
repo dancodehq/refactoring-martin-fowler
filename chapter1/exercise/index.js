@@ -1,13 +1,5 @@
 export function statement(invoice, plays) {
 
-    function enrichPerformance(performance) {
-        const result = Object.assign({}, performance);
-        result.play = playFor(result);
-        result.amount = amountFor(result);
-        result.volumeCredits = volumeCreditsFor(result);
-        return result;
-    }
-
     const statementData = {};
     statementData.customer = invoice.customer;
     statementData.performances = invoice.performances.map(enrichPerformance);
@@ -63,6 +55,14 @@ export function statement(invoice, plays) {
 
     function totalAmount() {
         return statementData.performances.reduce((total, p) => total + p.amount, 0);
+    }
+
+    function enrichPerformance(performance) {
+        const result = Object.assign({}, performance);
+        result.play = playFor(result);
+        result.amount = amountFor(result);
+        result.volumeCredits = volumeCreditsFor(result);
+        return result;
     }
 
     function renderPlainText(data, invoice) {
